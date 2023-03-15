@@ -2,8 +2,8 @@
 //  AlertController.swift
 //  RealmApp
 //
-//  Created by Alexey Efimov on 12.03.2020.
-//  Copyright © 2020 Alexey Efimov. All rights reserved.
+//  Created by Aleksei Voronovskii on 12.03.2020.
+//  Copyright © 2020 Aleksei Voronovskii. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  TasksViewController.swift
 //  RealmApp
 //
-//  Created by Alexey Efimov on 02.07.2018.
-//  Copyright © 2018 Alexey Efimov. All rights reserved.
+//  Created by Aleksei Voronovskii on 02.07.2018.
+//  Copyright © 2018 Aleksei Voronovskii. All rights reserved.
 //
 
 import UIKit
@@ -59,10 +59,11 @@ class TasksViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if indexPath.section == 0 {
-            let task = taskList.tasks[indexPath.row]
+            let task = currentTasks[indexPath.row]
             
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] _, _, _ in
                 StorageManager.shared.delete(task)
+                currentTasks.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             
@@ -90,10 +91,11 @@ class TasksViewController: UITableViewController {
             
             return UISwipeActionsConfiguration(actions: [doneAction, editAction, deleteAction])
         } else {
-            let task = taskList.tasks[indexPath.row]
+            let task = completedTasks[indexPath.row]
             
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] _, _, _ in
                 StorageManager.shared.delete(task)
+                completedTasks.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             
@@ -135,6 +137,7 @@ extension TasksViewController {
                 completion()
             } else {
                 self?.save(task: taskTitle, withNote: note)
+                self!.currentTasks.append(task!)
             }
         }
         

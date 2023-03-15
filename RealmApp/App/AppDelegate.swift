@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  RealmApp
 //
-//  Created by Alexey Efimov on 02.07.2018.
-//  Copyright © 2018 Alexey Efimov. All rights reserved.
+//  Created by Aleksei Voronovskii on 02.07.2018.
+//  Copyright © 2018 Aleksei Voronovskii. All rights reserved.
 //
 
 import UIKit
