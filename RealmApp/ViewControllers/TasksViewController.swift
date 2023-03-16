@@ -137,7 +137,6 @@ extension TasksViewController {
                 completion()
             } else {
                 self?.save(task: taskTitle, withNote: note)
-                self!.currentTasks.append(task!)
             }
         }
         
@@ -146,6 +145,7 @@ extension TasksViewController {
     
     private func save(task: String, withNote note: String) {
         StorageManager.shared.save(task, withNote: note, to: taskList) { task in
+            currentTasks.append(task)
             let rowIndex = IndexPath(row: currentTasks.firstIndex(of: task) ?? 0, section: 0)
             tableView.insertRows(at: [rowIndex], with: .automatic)
         }
